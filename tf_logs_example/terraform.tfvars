@@ -1,0 +1,7 @@
+region_name    = "ap-south-1"
+vpc_cidr       = "10.0.0.0/24"
+subnet_address = "10.0.0.0/28"
+az             = "ap-south-1a"
+instance-type  = "t2.micro"
+ami-id         = "ami-0402e56c0a7afb78f"
+key-name       = "balu_ap-south-1"

@@ -1,3 +1,16 @@
+terraform {
+  backend "s3" {
+
+    bucket         = "terraform-state-bucket-2222"
+    key            = "test-lock.tfstate"
+    region         = "ap-south-1"
+    dynamodb_table = "terraform-locks"
+    encrypt        = true
+
+  }
+}
+
+
 provider "aws" {
   region = "ap-south-1"
 
@@ -104,11 +117,11 @@ resource "aws_security_group" "terraform-sg" {
 }
 
 resource "aws_instance" "Redhat_ec2" {
-  ami                    = "ami-0402e56c0a7afb78f" # Ubuntu AMI
-  instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.terra_subnet.id
-  vpc_security_group_ids = [aws_security_group.terraform-sg.id]
-  key_name               = "terraform-key"
+  ami                         = "ami-0402e56c0a7afb78f" # Ubuntu AMI
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.terra_subnet.id
+  vpc_security_group_ids      = [aws_security_group.terraform-sg.id]
+  key_name                    = "balu_ap-south-1"
   associate_public_ip_address = true
 
   tags = {
@@ -117,11 +130,11 @@ resource "aws_instance" "Redhat_ec2" {
 }
 
 resource "aws_instance" "terra-server" {
-  ami                    = "ami-06031e2c49c278c8f" # Ubuntu AMI
-  instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.terra_subnet_2.id
-  vpc_security_group_ids = [aws_security_group.terraform-sg.id]
-  key_name               = "terraform-key"
+  ami                         = "ami-06031e2c49c278c8f" # Ubuntu AMI
+  instance_type               = "t2.micro"
+  subnet_id                   = aws_subnet.terra_subnet_2.id
+  vpc_security_group_ids      = [aws_security_group.terraform-sg.id]
+  key_name                    = "balu_ap-south-1"
   associate_public_ip_address = true
 
   tags = {
